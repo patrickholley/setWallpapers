@@ -6,12 +6,12 @@ do
 	}
 
 	getWidth() {
-		echo $(file $1 | grep -Po 'data, \K[^ ]+')
+		echo $(file $1 | grep -oP 'data, \K[^ ]+')
 	}
 
 	setWallpaper() {
 		active=$(getFilePath "a${1}")
-		correct=$(getFilePath "$(xrandr | grep -oi " connected " | wc -l)${1}")
+		correct=$(getFilePath "$(xrandr | grep -io " connected " | wc -l)${1}")
 
 		if [ "$(getWidth $active)" != "$(getWidth $correct)" ]
 		then
