@@ -2,7 +2,7 @@
 while true
 do
 	getFilePath() {
-		echo "/hdd/Wallpapers/${1}Wallpaper.png"
+		echo "/hdd/Wallpapers/${1}.png"
 	}
 
 	getWidth() {
@@ -10,17 +10,17 @@ do
 	}
 
 	setWallpaper() {
-		activeWallpaper=$(getFilePath "active${1}")
-		correctWallpaper=$(getFilePath "$(xrandr | grep -oi " connected " | wc -l)${1}")
+		active=$(getFilePath "a${1}")
+		correct=$(getFilePath "$(xrandr | grep -oi " connected " | wc -l)${1}")
 
-		if [ "$(getWidth $activeWallpaper)" != "$(getWidth $correctWallpaper)" ]
+		if [ "$(getWidth $active)" != "$(getWidth $correct)" ]
 		then
-			cp $correctWallpaper $activeWallpaper
+			cp $correct $active
 		fi
 	}
 
-	for wallpaperType in "" "Login"; do
-		setWallpaper $wallpaperType
+	for type in "D" "L"; do
+		setWallpaper $type
 	done
 
 	sleep 5
