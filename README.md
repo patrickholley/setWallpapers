@@ -7,7 +7,7 @@ Note that this is only updating the already-set wallpaper files my Linux install
 
 To do the initial change for the login background settings, I used the script found here: https://github.com/PRATAP-KUMAR/focalgdm3
 
-To do the initial change for change my desktop background settings, I ran the following commands:
+To do the initial change for my desktop background settings, I ran the following commands:
 ```
 gsettings set org.gnome.desktop.background picture-options 'spanned'
 gsettings get org.gnome.desktop.background picture-uri 'file:///example/file/path.png'
