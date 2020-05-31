@@ -10,5 +10,5 @@ To do the initial change for the login background settings, I used the script fo
 To do the initial change for my desktop background settings, I ran the following commands:
 ```
 gsettings set org.gnome.desktop.background picture-options 'spanned'
-gsettings get org.gnome.desktop.background picture-uri 'file:///example/file/path.png'
+gsettings set org.gnome.desktop.background picture-uri 'file:///example/file/path.png'
 ```
