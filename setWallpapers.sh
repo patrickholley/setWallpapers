@@ -1,33 +1,27 @@
 #!/bin/bash
 while true
 do
-	monitorCount=$(xrandr | grep -oi " connected " | wc -l)
+	getFilePath() {
+		echo "/hdd/Wallpapers/${1}Wallpaper.png"
+	}
 
-	prefix="/hdd/Wallpapers/"
-	suffix="Wallpaper.png"
-	
 	getWidth() {
 		echo $(file $1 | grep -Po 'data, \K[^ ]+')
 	}
-	
-	setWallpaper() {
-		suffix="${1}Wallpaper.png"
-		
-		activeWallpaper="${prefix}active${suffix}"
-		correctWallpaper="${prefix}${monitorCount}${suffix}"
-		
-		activeLoginWallpaperWidth=$(getWidth $activeWallpaper)
-		correctLoginWallpaperWidth=$(getWidth $correctWallpaper)
 
-		if [ "$activeWallpaperWidth" != "$correctWallpaperWidth" ]; then
+	setWallpaper() {
+		activeWallpaper=$(getFilePath "active${1}")
+		correctWallpaper=$(getFilePath "$(xrandr | grep -oi " connected " | wc -l)${1}")
+
+		if [ "$(getWidth $activeWallpaper)" != "$(getWidth $correctWallpaper)" ]
+		then
 			cp $correctWallpaper $activeWallpaper
 		fi
 	}
-	
+
 	for wallpaperType in "" "Login"; do
 		setWallpaper $wallpaperType
 	done
-	
+
 	sleep 5
 done
-
